@@ -1,3 +1,5 @@
+<img width="1280" height="720" alt="banner" src="https://github.com/user-attachments/assets/3b674189-1071-4580-b495-5b35d452aeec" />
+
 # CIE 9618 Pseudocode
 
 Syntax highlighting for **Cambridge International AS & A Level Computer Science (9618)** pseudocode in Visual Studio Code.
