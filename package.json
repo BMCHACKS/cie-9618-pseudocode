@@ -1,0 +1,42 @@
+{
+  "name": "cie-9618-pseudocode",
+  "displayName": "CIE 9618 Pseudocode",
+  "description": "Syntax highlighting, snippets, indentation and folding for Cambridge International AS & A Level Computer Science 9618 pseudocode.",
+  "version": "0.1.0",
+  "publisher": "BMC0",
+  "repository": {
+	  "type": "git",
+	  "url": "https://github.com/BMCHACKS/cie-9618-pseudocode.git"
+	},
+  "license": "MIT",
+  "engines": { "vscode": "^1.70.0" },
+  "categories": ["Programming Languages", "Snippets"],
+  "contributes": {
+    "languages": [
+      {
+        "id": "pseudocode9618",
+        "aliases": ["CIE 9618 Pseudocode", "Pseudocode"],
+        "extensions": [".pseudo", ".pseudocode", ".psc"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "pseudocode9618",
+        "scopeName": "source.pseudocode9618",
+        "path": "./syntaxes/pseudocode9618.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      { "language": "pseudocode9618", "path": "./snippets/pseudocode9618.json" }
+    ],
+    "configurationDefaults": {
+      "[pseudocode9618]": {
+        "editor.tabSize": 3,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false,
+        "editor.autoIndent": "full"
+      }
+    }
+  }
+}

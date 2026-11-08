@@ -1,0 +1,110 @@
+// CIE 9618 pseudocode demo - every construct from the guide
+CONSTANT HourlyRate = 6.50
+CONSTANT DefaultText = "N/A"
+
+TYPE Season = (Spring, Summer, Autumn, Winter)
+TYPE TIntPointer = ^INTEGER
+TYPE StudentRecord
+   DECLARE LastName : STRING
+   DECLARE FirstName : STRING
+   DECLARE DateOfBirth : DATE
+   DECLARE YearGroup : INTEGER
+   DECLARE FormGroup : CHAR
+ENDTYPE
+TYPE LetterSet = SET OF CHAR
+DEFINE Vowels ('A','E','I','O','U') : LetterSet
+
+DECLARE Counter : INTEGER
+DECLARE StudentNames : ARRAY[1:30] OF STRING
+DECLARE Form : ARRAY[1:30] OF StudentRecord
+DECLARE Grid : ARRAY[1:3,1:3] OF CHAR
+DECLARE Pupil1 : StudentRecord
+DECLARE MyPointer : TIntPointer
+
+Pupil1.LastName ← "Johnson"
+Pupil1.DateOfBirth ← 02/01/2005
+Pupil1.YearGroup ← 6
+Pupil1.FormGroup ← 'A'
+Counter <- Counter + 1
+Grid[2,3] ← 'X'
+
+FOR Index ← 1 TO 30
+   StudentNames[Index] ← ""
+NEXT Index
+
+FUNCTION Max(Number1 : INTEGER, Number2 : INTEGER) RETURNS INTEGER
+   IF Number1 > Number2 THEN
+      RETURN Number1
+   ELSE
+      RETURN Number2
+   ENDIF
+ENDFUNCTION
+
+// swaps X and Y
+PROCEDURE Swap(BYREF X : INTEGER, Y : INTEGER)
+   DECLARE Temp : INTEGER
+   Temp ← X   // temporarily store X
+   X ← Y
+   Y ← Temp
+ENDPROCEDURE
+
+INPUT Move
+CASE OF Move
+   'W' : Position ← Position - 10
+   'S' : Position ← Position + 10
+   OTHERWISE : CALL Beep
+ENDCASE
+
+REPEAT
+   OUTPUT "Please enter the password"
+   INPUT Password
+UNTIL Password = "Secret"
+
+WHILE Number > 9
+   Number ← Number MOD 9 + (Number DIV 2) * 3
+ENDWHILE
+
+OUTPUT "Penalty Fine = ", Max(10, Distance * 2)
+OUTPUT UCASE('h'), LENGTH("Happy Days"), MID("ABCDEFGH", 2, 3), RAND(87), INT(27.5415)
+OUTPUT "Summer" & " " & "Pudding"
+
+DECLARE LineOfText : STRING
+OPENFILE "FileA.txt" FOR READ
+OPENFILE "FileB.txt" FOR WRITE
+WHILE NOT EOF("FileA.txt")
+   READFILE "FileA.txt", LineOfText
+   IF LineOfText = "" AND TRUE OR NOT FALSE THEN
+      WRITEFILE "FileB.txt", "----------"
+   ELSE
+      WRITEFILE "FileB.txt", LineOfText
+   ENDIF
+ENDWHILE
+CLOSEFILE "FileA.txt"
+CLOSEFILE "FileB.txt"
+
+OPENFILE "StudentFile.Dat" FOR RANDOM
+SEEK "StudentFile.Dat", 10
+GETRECORD "StudentFile.Dat", Pupil1
+PUTRECORD "StudentFile.Dat", Pupil1
+CLOSEFILE "StudentFile.Dat"
+
+CLASS Pet
+   PRIVATE Name : STRING
+   PUBLIC PROCEDURE NEW(GivenName : STRING)
+      Name ← GivenName
+   ENDPROCEDURE
+ENDCLASS
+
+CLASS Cat INHERITS Pet
+   PRIVATE Breed : STRING
+   PUBLIC PROCEDURE NEW(GivenName : STRING, GivenBreed : STRING)
+      SUPER.NEW(GivenName)
+      Breed ← GivenBreed
+   ENDPROCEDURE
+ENDCLASS
+
+MyCat ← NEW Cat("Kitty", "Shorthaired")
+Player.SetAttempts(5)
+OUTPUT Player.GetAttempts()
+MyPointer ← ^ThisSeason
+NextSeason ← MyPointer^ + 1

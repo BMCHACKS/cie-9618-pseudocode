@@ -1,0 +1,193 @@
+{
+  "name": "CIE 9618 Pseudocode",
+  "scopeName": "source.pseudocode9618",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#declarations" },
+    { "include": "#file-mode" },
+    { "include": "#keywords" },
+    { "include": "#types" },
+    { "include": "#constants" },
+    { "include": "#builtins" },
+    { "include": "#calls" },
+    { "include": "#members" },
+    { "include": "#operators" }
+  ],
+  "repository": {
+    "comments": {
+      "match": "//.*$",
+      "name": "comment.line.double-slash.pseudocode9618"
+    },
+    "strings": {
+      "patterns": [
+        {
+          "begin": "\"",
+          "end": "\"|$",
+          "name": "string.quoted.double.pseudocode9618"
+        },
+        {
+          "begin": "'",
+          "end": "'|$",
+          "name": "string.quoted.single.char.pseudocode9618"
+        }
+      ]
+    },
+    "declarations": {
+      "patterns": [
+        {
+          "match": "\\b(PROCEDURE|FUNCTION)\\b\\s+([A-Za-z][A-Za-z0-9_]*)",
+          "captures": {
+            "1": { "name": "storage.type.function.pseudocode9618" },
+            "2": { "name": "entity.name.function.pseudocode9618" }
+          }
+        },
+        {
+          "match": "\\b(CLASS)\\b\\s+([A-Za-z][A-Za-z0-9_]*)(?:\\s+(INHERITS)\\s+([A-Za-z][A-Za-z0-9_]*))?",
+          "captures": {
+            "1": { "name": "storage.type.class.pseudocode9618" },
+            "2": { "name": "entity.name.type.class.pseudocode9618" },
+            "3": { "name": "storage.modifier.inherits.pseudocode9618" },
+            "4": { "name": "entity.other.inherited-class.pseudocode9618" }
+          }
+        },
+        {
+          "match": "\\b(TYPE)\\b\\s+([A-Za-z][A-Za-z0-9_]*)",
+          "captures": {
+            "1": { "name": "storage.type.pseudocode9618" },
+            "2": { "name": "entity.name.type.pseudocode9618" }
+          }
+        },
+        {
+          "match": "\\b(CONSTANT)\\b\\s+([A-Za-z][A-Za-z0-9_]*)",
+          "captures": {
+            "1": { "name": "storage.type.constant.pseudocode9618" },
+            "2": { "name": "variable.other.constant.pseudocode9618" }
+          }
+        },
+        {
+          "match": "\\b(CALL)\\b\\s+([A-Za-z][A-Za-z0-9_]*)",
+          "captures": {
+            "1": { "name": "keyword.control.call.pseudocode9618" },
+            "2": { "name": "entity.name.function.call.pseudocode9618" }
+          }
+        },
+        {
+          "match": "\\b(NEW)\\b\\s+([A-Za-z][A-Za-z0-9_]*)",
+          "captures": {
+            "1": { "name": "keyword.operator.new.pseudocode9618" },
+            "2": { "name": "entity.name.type.class.pseudocode9618" }
+          }
+        },
+        {
+          "begin": "\\b(DECLARE)\\b\\s+([A-Za-z][A-Za-z0-9_]*)",
+          "beginCaptures": {
+            "1": { "name": "storage.type.declare.pseudocode9618" },
+            "2": { "name": "variable.other.declaration.pseudocode9618" }
+          },
+          "end": "(?=//)|$",
+          "patterns": [
+            { "match": "\\b(ARRAY|OF)\\b", "name": "storage.type.array.pseudocode9618" },
+            { "include": "#types" },
+            {
+              "begin": "\\[",
+              "end": "\\]",
+              "patterns": [
+                { "include": "#constants" },
+                { "match": "\\b[A-Za-z][A-Za-z0-9_]*\\b", "name": "variable.other.constant.pseudocode9618" },
+                { "match": "[:,]", "name": "punctuation.separator.pseudocode9618" }
+              ]
+            },
+            { "match": "\\b[A-Za-z][A-Za-z0-9_]*\\b", "name": "entity.name.type.user.pseudocode9618" }
+          ]
+        }
+      ]
+    },
+    "file-mode": {
+      "match": "\\b(FOR)\\s+(READ|WRITE|APPEND|RANDOM)\\b",
+      "captures": {
+        "1": { "name": "keyword.control.pseudocode9618" },
+        "2": { "name": "constant.language.file-mode.pseudocode9618" }
+      }
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "match": "\\b(IF|THEN|ELSE|ENDIF|CASE|OF|OTHERWISE|ENDCASE|FOR|TO|STEP|NEXT|REPEAT|UNTIL|WHILE|ENDWHILE|RETURN)\\b",
+          "name": "keyword.control.pseudocode9618"
+        },
+        {
+          "match": "\\b(INPUT|OUTPUT|OPENFILE|CLOSEFILE|READFILE|WRITEFILE|SEEK|GETRECORD|PUTRECORD)\\b",
+          "name": "keyword.other.io.pseudocode9618"
+        },
+        {
+          "match": "\\b(DECLARE|CONSTANT|TYPE|DEFINE|SET|ARRAY|PROCEDURE|ENDPROCEDURE|FUNCTION|ENDFUNCTION|RETURNS|CLASS|ENDCLASS|ENDTYPE)\\b",
+          "name": "storage.type.pseudocode9618"
+        },
+        {
+          "match": "\\b(PUBLIC|PRIVATE|BYVAL|BYREF|INHERITS|NEW)\\b",
+          "name": "storage.modifier.pseudocode9618"
+        },
+        {
+          "match": "\\bSUPER\\b",
+          "name": "variable.language.super.pseudocode9618"
+        },
+        {
+          "match": "\\b(AND|OR|NOT)\\b",
+          "name": "keyword.operator.logical.pseudocode9618"
+        },
+        {
+          "match": "\\b(DIV|MOD)\\b",
+          "name": "keyword.operator.arithmetic.pseudocode9618"
+        }
+      ]
+    },
+    "types": {
+      "match": "\\b(INTEGER|REAL|CHAR|STRING|BOOLEAN|DATE)\\b",
+      "name": "support.type.primitive.pseudocode9618"
+    },
+    "constants": {
+      "patterns": [
+        { "match": "\\b(TRUE|FALSE)\\b", "name": "constant.language.boolean.pseudocode9618" },
+        { "match": "\\b\\d{1,2}/\\d{1,2}/\\d{4}\\b", "name": "constant.numeric.date.pseudocode9618" },
+        { "match": "\\b\\d+\\.\\d+\\b", "name": "constant.numeric.float.pseudocode9618" },
+        { "match": "\\b\\d+\\b", "name": "constant.numeric.integer.pseudocode9618" }
+      ]
+    },
+    "builtins": {
+      "match": "\\b(RIGHT|LENGTH|MID|LCASE|UCASE|INT|RAND|EOF)\\b(?=\\s*\\()",
+      "name": "support.function.builtin.pseudocode9618"
+    },
+    "calls": {
+      "match": "\\b([A-Za-z][A-Za-z0-9_]*)\\s*(?=\\()",
+      "name": "entity.name.function.call.pseudocode9618"
+    },
+    "members": {
+      "patterns": [
+        {
+          "match": "(\\.)\\s*([A-Za-z][A-Za-z0-9_]*)\\s*(?=\\()",
+          "captures": {
+            "1": { "name": "punctuation.accessor.pseudocode9618" },
+            "2": { "name": "entity.name.function.method.pseudocode9618" }
+          }
+        },
+        {
+          "match": "(\\.)\\s*([A-Za-z][A-Za-z0-9_]*)",
+          "captures": {
+            "1": { "name": "punctuation.accessor.pseudocode9618" },
+            "2": { "name": "variable.other.property.pseudocode9618" }
+          }
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        { "match": "←|<-", "name": "keyword.operator.assignment.pseudocode9618" },
+        { "match": "<>|<=|>=|=|<|>", "name": "keyword.operator.comparison.pseudocode9618" },
+        { "match": "&", "name": "keyword.operator.concatenation.pseudocode9618" },
+        { "match": "\\^", "name": "keyword.operator.pointer.pseudocode9618" },
+        { "match": "[-+*/–−]", "name": "keyword.operator.arithmetic.pseudocode9618" }
+      ]
+    }
+  }
+}

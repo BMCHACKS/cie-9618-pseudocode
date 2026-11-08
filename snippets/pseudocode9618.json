@@ -1,0 +1,23 @@
+{
+  "IF": { "prefix": "if", "body": ["IF ${1:condition} THEN", "\t$0", "ENDIF"], "description": "IF statement" },
+  "IF ELSE": { "prefix": "ifelse", "body": ["IF ${1:condition} THEN", "\t$2", "ELSE", "\t$0", "ENDIF"], "description": "IF ... ELSE" },
+  "FOR": { "prefix": "for", "body": ["FOR ${1:Index} ← ${2:1} TO ${3:10}", "\t$0", "NEXT ${1:Index}"], "description": "Count-controlled loop" },
+  "FOR STEP": { "prefix": "forstep", "body": ["FOR ${1:Index} ← ${2:10} TO ${3:1} STEP ${4:-1}", "\t$0", "NEXT ${1:Index}"], "description": "FOR with STEP" },
+  "WHILE": { "prefix": "while", "body": ["WHILE ${1:condition}", "\t$0", "ENDWHILE"], "description": "Pre-condition loop" },
+  "REPEAT": { "prefix": "repeat", "body": ["REPEAT", "\t$0", "UNTIL ${1:condition}"], "description": "Post-condition loop" },
+  "CASE": { "prefix": "case", "body": ["CASE OF ${1:Variable}", "\t${2:value} : $3", "\tOTHERWISE : $0", "ENDCASE"], "description": "CASE statement" },
+  "PROCEDURE": { "prefix": "procedure", "body": ["PROCEDURE ${1:Name}(${2:Param : INTEGER})", "\t$0", "ENDPROCEDURE"], "description": "Procedure" },
+  "FUNCTION": { "prefix": "function", "body": ["FUNCTION ${1:Name}(${2:Param : INTEGER}) RETURNS ${3:INTEGER}", "\t$0", "\tRETURN ${4:Value}", "ENDFUNCTION"], "description": "Function" },
+  "DECLARE": { "prefix": "declare", "body": "DECLARE ${1:Identifier} : ${2:INTEGER}", "description": "Variable declaration" },
+  "ARRAY 1D": { "prefix": "array", "body": "DECLARE ${1:Identifier} : ARRAY[${2:1}:${3:10}] OF ${4:INTEGER}", "description": "1D array" },
+  "ARRAY 2D": { "prefix": "array2d", "body": "DECLARE ${1:Identifier} : ARRAY[${2:1}:${3:3},${4:1}:${5:3}] OF ${6:CHAR}", "description": "2D array" },
+  "CONSTANT": { "prefix": "constant", "body": "CONSTANT ${1:Identifier} = ${2:value}", "description": "Constant" },
+  "RECORD": { "prefix": "record", "body": ["TYPE ${1:Name}", "\tDECLARE ${2:Field} : ${3:STRING}", "\t$0", "ENDTYPE"], "description": "Record type" },
+  "ENUM": { "prefix": "enum", "body": "TYPE ${1:Name} = (${2:Value1}, ${3:Value2})", "description": "Enumerated type" },
+  "POINTER": { "prefix": "pointer", "body": "TYPE ${1:TIntPointer} = ^${2:INTEGER}", "description": "Pointer type" },
+  "CLASS": { "prefix": "class", "body": ["CLASS ${1:Name}", "\tPRIVATE ${2:Field} : ${3:STRING}", "\tPUBLIC PROCEDURE NEW(${4:Given : STRING})", "\t\t${2:Field} ← ${5:Given}", "\tENDPROCEDURE", "ENDCLASS"], "description": "Class with constructor" },
+  "SUBCLASS": { "prefix": "subclass", "body": ["CLASS ${1:Child} INHERITS ${2:Parent}", "\tPUBLIC PROCEDURE NEW(${3:Given : STRING})", "\t\tSUPER.NEW(${4:Given})", "\tENDPROCEDURE", "ENDCLASS"], "description": "Subclass" },
+  "READ FILE LOOP": { "prefix": "readfile", "body": ["DECLARE ${1:LineOfText} : STRING", "OPENFILE \"${2:File.txt}\" FOR READ", "WHILE NOT EOF(\"${2:File.txt}\")", "\tREADFILE \"${2:File.txt}\", ${1:LineOfText}", "\t$0", "ENDWHILE", "CLOSEFILE \"${2:File.txt}\""], "description": "Read a text file line by line" },
+  "OUTPUT": { "prefix": "output", "body": "OUTPUT ${1:\"text\"}", "description": "OUTPUT" },
+  "INPUT": { "prefix": "input", "body": "INPUT ${1:Identifier}", "description": "INPUT" }
+}
