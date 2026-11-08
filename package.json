@@ -1,7 +1,7 @@
 {
   "name": "cie-9618-pseudocode-sh",
   "icon" : "icon.png",
-  "displayName": "CIE 9618 Pseudocode",
+  "displayName": "CIE 9618 Pseudocode Syntax Highlighter",
   "description": "Syntax highlighting, snippets, indentation and folding for Cambridge International AS & A Level Computer Science 9618 pseudocode.",
   "version": "0.1.0",
   "publisher": "BMC0",
