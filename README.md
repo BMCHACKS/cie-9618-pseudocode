@@ -1,4 +1,4 @@
-<img width="1280" height="640" alt="banner" src="https://github.com/user-attachments/assets/4a973d02-2c0c-4889-8278-2cbe3b7958c8" />
+<img width="100%" alt="banner" src="https://github.com/user-attachments/assets/af79cceb-1833-4f2c-9faf-e3059342da53"/>
 
 # CIE 9618 Pseudocode
 
